@@ -1,0 +1,50 @@
+<header>
+    <div class="header">Dodaj nową salę</div>
+</header>
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div class="form">
+    <fieldset>
+        <div>
+            <?php echo $this->formLabel($form->get('number')); ?>
+            <?php echo $this->formInput($form->get('number')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('number')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('name')); ?>
+            <?php echo $this->formInput($form->get('name')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('name')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('building')); ?>
+            <?php echo $this->formInput($form->get('building')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('building')); ?></div>
+        </div>
+         <div>
+            <?php echo $this->formLabel($form->get('attendant')); ?>
+            <?php echo $this->formInput($form->get('attendant')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('attendant')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('posts')); ?>
+            <?php echo $this->formInput($form->get('posts')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('posts')); ?></div>
+        </div>
+        <div><?php echo $this->formSubmit($form->get('submit')); ?></div>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Validations
+    var url = '/rooms/validateJSON';
+    $(['name', 'addr', 'tel']).each(function(index, field){
+      var validator = new myValidator({'url':url,'form': $('#room')});
+      validator.setInput(field).setValidation();
+    });
+});
+</script>
+
+<?php echo $this->form()->closeTag(); ?>
+

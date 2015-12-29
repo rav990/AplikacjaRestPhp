@@ -1,0 +1,24 @@
+<?php if ( isset($room) && !empty($room->id) ): ?>
+
+    <div class="header"><?php echo $this->translate("Akcje") ?></div>
+    
+    <a href="<?php echo $this->url('rooms_segment',
+            array('action' => 'view', 'id' => $room->id));
+    ?>"><?php echo $this->translate("Informacje o sali"); ?></a>
+    
+    <a href="<?php echo $this->url('add_equipment',
+            array('room_id' => $room->id));
+    ?>"><?php echo $this->translate("Dodaj nowy sprzęt"); ?></a>
+    
+<?php endif; ?>
+
+<div class="header">Sale</div>
+
+<a href="<?php echo $this->url('rooms_segment', array('action' => 'list'));
+    ?>"><?php echo $this->translate("Zobacz wszystkie"); ?></a>
+
+<a href="<?php echo $this->url('rooms_segment', array('action' => 'add'));
+        ?>"><?php echo $this->translate("Dodaj nową salę"); ?></a>
+
+
+

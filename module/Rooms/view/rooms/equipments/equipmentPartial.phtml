@@ -1,0 +1,33 @@
+<div class="equipmentPartial" rel="<?php echo $equipment->id ?>">
+    <div class="row">
+    <div class=col-md-6>
+        
+            <div class="field"><?php echo $this->translate('Nazwa'); ?>:</div>
+            <div class="val"><?php echo $equipment->name ?></div>
+        
+       
+            <div class="field"><?php echo $this->translate('Ilość'); ?>:</div>
+            <div class="val"><?php echo $equipment->quantity ?></div>
+       
+        
+            <div class="field"><?php echo $this->translate('Przeznaczenie'); ?>:</div>
+            <div class="val"><?php echo $equipment->destiny ?></div>
+       
+          
+            <div class="field"><?php echo $this->translate('Czy uszkodzony'); ?>:</div>
+            <div class="val"><?php echo $equipment->damaged ?></div>
+       
+            <div class="field"><?php echo $this->translate('Czy można wypożyczyc'); ?>:</div>
+            <div class="val"><?php echo $equipment->hire ?></div>
+    
+            <div class="field"><?php echo $this->translate('Dodane'); ?>:</div>
+            <div class="val"><?php echo $equipment->adddate ?></div>
+            
+    </div>
+    <div class="col-md-6">
+        <a href="javascript:;" class="deleteEquipment" rel="<?php echo $equipment->id ?>">
+            <?php echo $this->translate('Usuń sprzęt'); ?>
+        </a>
+    </div>
+    </div>
+</div>

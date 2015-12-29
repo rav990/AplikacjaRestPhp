@@ -1,0 +1,59 @@
+<header>
+    <div class="header"><?php echo $this->translate('Dodaj nowy sprzęt'); ?></div>
+</header>
+
+<p>Sala: <b><?php echo $room->name; ?></b></p>
+
+<?php echo $this->form()->openTag($form); ?>
+
+<div class="form">
+    <fieldset>
+        <div>
+            <?php echo $this->formLabel($form->get('name')); ?>
+            <?php echo $this->formInput($form->get('name')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('name')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('quantity')); ?>
+            <?php echo $this->formInput($form->get('quantity')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('quantity')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('destiny')); ?>
+            <?php echo $this->formInput($form->get('destiny')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('destiny')); ?></div>
+        </div>
+         <div>
+            <?php echo $this->formLabel($form->get('damaged')); ?>
+            <?php echo $this->formInput($form->get('damaged')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('damaged')); ?></div>
+        </div>
+         <div>
+            <?php echo $this->formLabel($form->get('hire')); ?>
+            <?php echo $this->formInput($form->get('hire')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('hire')); ?></div>
+        </div>
+        <div>
+            <?php echo $this->formLabel($form->get('adddate')); ?>
+            <?php echo $this->formInput($form->get('adddate')); ?>
+            <div class="errors"><?php echo $this->formElementErrors($form->get('adddate')); ?></div>
+        </div>
+        <div><?php echo $this->formSubmit($form->get('submit')); ?></div>
+        <input type="hidden" name="cid" value="<?php echo $room->id; ?>"/>
+    </fieldset>
+</div>
+
+<?php echo $this->form()->closeTag(); ?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Validations
+    var url = '<?php echo $this->url('equipment_segment',
+            array('action' => 'validateJSON'));
+    ?>';
+    $(['name', 'quantity', 'destiny', 'damaged', 'hire' ,'adddate']).each(function(index, field){
+      var validator = new myValidator({'url':url,'form': $('#equipment')});
+      validator.setInput(field).setValidation();
+    });
+});
+</script>

@@ -1,0 +1,16 @@
+<header>
+    <div class="header">Lista sal:</div>
+</header>
+
+<ul class="roomList">
+<?php foreach ( $rooms as $room ): ?>
+    <li>
+        <?php echo $room->name ?>
+        <a href="<?php echo $this->url('rooms_segment',
+                array('action' => 'view', 'id' => $room->id));
+        ?>"><?php
+                echo $this->translate("Pokaż");
+        ?></a>
+    </li>
+<?php endforeach; ?>
+</ul>
