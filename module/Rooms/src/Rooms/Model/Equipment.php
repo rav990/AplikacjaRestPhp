@@ -78,7 +78,7 @@ class Equipment
     public $hire;
     
     /**
-     * Date of employment.
+     * Date of addt.
      * @var string format Y-m-d
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Data dodania:"})
@@ -96,6 +96,18 @@ class Equipment
      */
     public $submit;
     
+    
+    public function exchangeArray($data)
+    {
+        $this->id     = (isset($data['id']))     ? $data['id']     : null;
+        $this->cid     = (isset($data['cid']))     ? $data['cid']     : null;
+        $this->name  = (isset($data['name']))  ? $data['name']  : null;
+        $this->quantity = (isset($data['quantity'])) ? $data['quantity'] : null;
+        $this->destiny  = (isset($data['destiny']))  ? $data['destiny']  : null;
+        $this->damaged  = (isset($data['damaged']))  ? $data['damaged']  : null;
+        $this->hire  = (isset($data['hire']))  ? $data['hire']  : null;
+        $this->adddate  = (isset($data['adddate']))  ? $data['adddate']  : null;
+    }
     /**
      * Returns all valid properties of Equipment.
      * @return array
@@ -118,4 +130,20 @@ class Equipment
         }
         return $this;
     }
+    
+    /*public function init($id)
+    {
+        var_dump("AAA");
+        $table = new TableGateway('equipment',
+            $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+        $rowset = $table->select(array('id' => $id));
+        
+        if ( $rowset->count() < 1 )
+            throw new \Exception("Equipment with id $id not found during initiation.");
+        
+        $this->addData($rowset->current());
+        $this->set_init();
+        
+        return $this;
+    }*/
 }

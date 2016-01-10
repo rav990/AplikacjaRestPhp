@@ -32,6 +32,16 @@ return array(
                     )
                 ),
             ),
+            'delete_room' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/delete_room',
+                    'defaults' => array(
+                        'controller' => 'Rooms\Controller\Rooms',
+                        'action' => 'delete'
+                    )
+                ),
+            ),
             'rooms_segment' => array(
                 'type' => 'segment',
                 'options' => array(

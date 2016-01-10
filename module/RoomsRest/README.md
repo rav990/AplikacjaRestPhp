@@ -1,4 +1,4 @@
-AlbumRest
+ApplicationRest
 =========
 
-Sample rest implemention of album for Zend Framework 2
+Sample rest implemention in Zend Framework 2

@@ -21,7 +21,7 @@ class RoomForm extends Form
             /* for js validations. */
             'attributes' => array(
                 'valid_required' => 'true',
-                'valid_minlength' => '3',
+                'valid_minlength' => '1',
                 'valid_maxlength' => '50',
             ),
         ));

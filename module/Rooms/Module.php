@@ -3,6 +3,8 @@ namespace Rooms;
 
 use Rooms\Model\Room;
 use Rooms\Model\RoomTable;
+use Rooms\Model\Equipment;
+use Rooms\Model\EquipmentTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -39,9 +41,21 @@ class Module
                 },
                 'RoomTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype = new ResultSet();        
                     $resultSetPrototype->setArrayObjectPrototype(new Room());
                     return new TableGateway('room', $dbAdapter, null, $resultSetPrototype);
+                },
+                'Rooms\Model\EquipmentTable' =>  function($sm) {
+                    $tableGateway = $sm->get('EquipmentTableGateway');
+                    $table = new EquipmentTable($tableGateway);
+                    return $table;
+                },
+                'EquipmentTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Equipment());
+                     
+                    return new TableGateway('equipment', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
          );

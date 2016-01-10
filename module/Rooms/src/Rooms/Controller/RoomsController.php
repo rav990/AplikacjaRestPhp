@@ -50,6 +50,27 @@ implements InjectApplicationEventInterface
         return new ViewModel(array('form' => $form));
     }
     
+    public function deleteAction()
+    {
+        $this->getRoomTable()->deleteRoom($id);
+        /*try
+        {
+            $id = $this->params()->fromPost('id');
+            if ( ! $id )
+                throw new \Exception('No room id.');
+            
+            $this->getServiceLocator()->get('rooms')
+                    ->delete($id);
+
+            return $this->myJsonModel(array('status'=>'ok'));
+        }
+        catch ( \Exception $e )
+        {
+            return $this->myJsonModel(array('status'=>'error',
+                'message' => $e->getMessage()));
+        }*/
+    }
+    
     /**
      * View room.
      */
@@ -140,5 +161,4 @@ implements InjectApplicationEventInterface
         return $view;
     }
     
-    private $subnav;
 }

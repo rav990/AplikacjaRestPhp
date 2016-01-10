@@ -73,6 +73,22 @@ class Rooms implements ServiceLocatorAwareInterface
         $sql->prepareStatementForSqlObject($insert)->execute();
     }
     
+      /**
+     * Deletes a record.
+     * @param $id
+     * @throws Exception if no records are deleted
+     * @return $this
+     */
+    public function delete($id)
+        {
+            $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+            $sql = new Sql($adapter);
+            $delete = $sql->delete('room')->where(array('id'=>$id));
+            $res = $sql->prepareStatementForSqlObject($delete)->execute();
+            if ( $res->getAffectedRows() < 1 )
+                throw new \Exeption('Room not deleted: DB affected rows count=0.');
+        }
+    
     /**
      * Set service locator
      * @param \Zend\ServiceManager\ServiceLocatorInterface $serviceLocator

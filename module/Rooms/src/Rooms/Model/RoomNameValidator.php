@@ -26,7 +26,7 @@ class RoomNameValidator extends AbstractValidator
     
     public function isValid($value)
     {
-        $this->setValue($value);
+        //$this->setValue($value);
         
         // search for this name.
         /*$table = new TableGateway('room',$this->serviceLocator->get('Zend\Db\Adapter\Adapter'));

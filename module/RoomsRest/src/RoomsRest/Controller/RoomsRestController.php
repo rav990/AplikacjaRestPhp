@@ -4,8 +4,8 @@ namespace RoomsRest\Controller;
 
 use Zend\Mvc\Controller\AbstractRestfulController;
 
-use Rooms\Model\Room;        
-use Rooms\Forms\RoomForm;      
+//use Rooms\Model\Room;        
+//use Rooms\Forms\RoomForm;      
 use Zend\View\Model\JsonModel;
 
 class RoomsRestController extends AbstractRestfulController
@@ -54,6 +54,7 @@ class RoomsRestController extends AbstractRestfulController
     public function update($id, $data)
     {
         $data['id'] = $id;
+        var_dump($data['id'] );
         $room = $this->getRoomTable()->getRoom($id);
         $form  = new RoomForm();
         $form->bind($room);

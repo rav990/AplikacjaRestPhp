@@ -19,7 +19,7 @@ $(document).ready(function() {
                 $('.employeePartial[rel='+id+']').fadeOut();
             }
         }
-        $.post("/zend/RestApplication/public/delete_equipment", {'id': id}, ok)
+        $.post("/delete_equipment", {'id': id}, ok)
         .fail(function() {
             alert("Sorry - the request did not work.");
         });
@@ -36,7 +36,29 @@ $(document).ready(function() {
           });*/
     }
     
+    var delRoom = function(id) {
+        var ok = function(data) {
+            if ( data['status'] != "ok" ) {
+                if ( data.hasOwnProperty('message') )
+                  alert("Sorry - the response from the server was: " + data['message']);
+                else
+                  alert("Sorry - deletion may have failed.");
+            }
+            else {
+                alert("Usunięto salę");
+            }
+        }
+        $.post("/delete_room", {'id': id}, ok)
+        .fail(function() {
+            alert("Sorry - the request did not work.");
+        });
+    }
+    
     $('.deleteEquipment').click(function() {
       delEquipment($(this).attr('rel'));
+    });
+    
+    $('.deleteRoom').click(function() {
+      delRoom($(this).attr('rel'));
     });
 });

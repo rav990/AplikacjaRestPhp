@@ -1,10 +1,10 @@
 <?php
-
-namespace Rooms\Model;
+// module/Album/src/Album/Model/AlbumTable.php:
+namespace Album\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class EquipmentTable
+class AlbumTable
 {
     protected $tableGateway;
 
@@ -19,7 +19,7 @@ class EquipmentTable
         return $resultSet;
     }
 
-    public function getEquipment($id)
+    public function getAlbum($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
@@ -30,23 +30,19 @@ class EquipmentTable
         return $row;
     }
 
-    public function saveEquipment(Equipment $equipment)
+    public function saveAlbum(Album $album)
     {
         $data = array(
-            'name' => $equipment->name,
-            'quantity'  => $equipment->quantity,
-            'destiny'  => $equipment->destiny,
-            'damaged'  => $equipment->damaged,
-            'hire'  => $equipment->hire,
-            'adddate' => $equipment->adddate,
+            'artist' => $album->artist,
+            'title'  => $album->title,
         );
 
-        $id = (int)$equipment->id;
+        $id = (int)$album->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
             $id = $this->tableGateway->getLastInsertValue();
         } else {
-            if ($this->getEquipment($id)) {
+            if ($this->getAlbum($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
                 throw new \Exception('Form id does not exist');
@@ -55,7 +51,7 @@ class EquipmentTable
         return $id; // Add Return
     }
 
-    public function deleteEquipment($id)
+    public function deleteAlbum($id)
     {
         $this->tableGateway->delete(array('id' => $id));
     }

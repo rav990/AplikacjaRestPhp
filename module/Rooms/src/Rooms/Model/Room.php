@@ -188,7 +188,7 @@ class Room implements InputFilterAwareInterface, ServiceLocatorAwareInterface
                     array(
                         'name'    => 'StringLength',
                         'options' => array(
-                            'min' => 3,
+                            'min' => 1,
                             'max' => 50,
                         ),
                     ),

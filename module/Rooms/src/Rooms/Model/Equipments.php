@@ -108,12 +108,12 @@ class Equipments implements ServiceLocatorAwareInterface, CheckInitialized
      */
     public function delete($id)
     {
-        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        /*$adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
         $sql = new Sql($adapter);
         $delete = $sql->delete('equipment')->where(array('id'=>$id));
         $res = $sql->prepareStatementForSqlObject($delete)->execute();
         if ( $res->getAffectedRows() < 1 )
-            throw new \Exeption('Equipment not deleted: DB affected rows count=0.');
+            throw new \Exeption('Equipment not deleted: DB affected rows count=0.');*/
     }
     
     /**

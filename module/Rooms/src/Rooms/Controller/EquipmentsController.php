@@ -5,7 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Rooms\Model\Equipment;
 use Rooms\Controller\RoomsController;
-use \Zend\View\Model\JsonModel;
+use Zend\View\Model\JsonModel;
 
 class EquipmentsController extends AbstractActionController
 {

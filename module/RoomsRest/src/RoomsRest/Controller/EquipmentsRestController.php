@@ -1,11 +1,11 @@
 <?php
 
-namespace Equipments\Controller;
+namespace RoomsRest\Controller;
 
 use Zend\Mvc\Controller\AbstractRestfulController;
 
-use Equipments\Model\Equipment;        
-use Rooms\Forms\RoomForm;      
+use Rooms\Model\Equipment;        
+//use Rooms\Forms\RoomForm;      
 use Zend\View\Model\JsonModel;
 
 class EquipmentsRestController extends AbstractRestfulController
@@ -79,7 +79,7 @@ class EquipmentsRestController extends AbstractRestfulController
     {
         if (!$this->equipmentTable) {
             $sm = $this->getServiceLocator();
-            $this->equipmentTable = $sm->get('Equipments\Model\EquipmentTable');
+            $this->equipmentTable = $sm->get('Rooms\Model\EquipmentTable');
         }
         return $this->equipmentTable;
     }
