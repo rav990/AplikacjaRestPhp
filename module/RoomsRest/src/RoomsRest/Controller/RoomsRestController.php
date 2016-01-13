@@ -4,8 +4,8 @@ namespace RoomsRest\Controller;
 
 use Zend\Mvc\Controller\AbstractRestfulController;
 
-//use Rooms\Model\Room;        
-//use Rooms\Forms\RoomForm;      
+use Rooms\Model\Room;        
+use Rooms\Forms\RoomForm;      
 use Zend\View\Model\JsonModel;
 
 class RoomsRestController extends AbstractRestfulController

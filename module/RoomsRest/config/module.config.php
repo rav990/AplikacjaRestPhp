@@ -27,6 +27,7 @@ return array(
                 'options' => array(
                     'route'    => '/rooms[/:cid]/equipments[/:id]',
                     'constraints' => array(
+                        'cid' => '[0-9]+',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(

@@ -13,16 +13,17 @@ class EquipmentTable
         $this->tableGateway = $tableGateway;
     }
 
-    public function fetchAll()
+    public function fetchAll($cid)
     {
-        $resultSet = $this->tableGateway->select();
+        $resultSet = $this->tableGateway->select(array('cid' => $cid));
         return $resultSet;
     }
 
-    public function getEquipment($id)
+    public function getEquipment($id,$cid)
     {
         $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('id' => $id));
+        $cid = (int) $cid;
+        $rowset = $this->tableGateway->select(array('id' => $id,'cid'=>$cid));
         $row = $rowset->current();
         if (!$row) {
             throw new \Exception("Could not find row $id");
@@ -30,8 +31,9 @@ class EquipmentTable
         return $row;
     }
 
-    public function saveEquipment(Equipment $equipment)
+    public function saveEquipment(Equipment $equipment,$cid)
     {
+        $cid = (int) $cid;
         $data = array(
             'name' => $equipment->name,
             'quantity'  => $equipment->quantity,
@@ -46,8 +48,8 @@ class EquipmentTable
             $this->tableGateway->insert($data);
             $id = $this->tableGateway->getLastInsertValue();
         } else {
-            if ($this->getEquipment($id)) {
-                $this->tableGateway->update($data, array('id' => $id));
+            if ($this->getEquipment($id, $cid)) {
+                $this->tableGateway->update($data, array('id' => $id,'cid'=>$cid));
             } else {
                 throw new \Exception('Form id does not exist');
             }

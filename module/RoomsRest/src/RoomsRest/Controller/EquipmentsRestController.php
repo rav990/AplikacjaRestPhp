@@ -5,7 +5,7 @@ namespace RoomsRest\Controller;
 use Zend\Mvc\Controller\AbstractRestfulController;
 
 use Rooms\Model\Equipment;        
-//use Rooms\Forms\RoomForm;      
+use Rooms\Forms\EquipmentForm;      
 use Zend\View\Model\JsonModel;
 
 class EquipmentsRestController extends AbstractRestfulController
@@ -14,7 +14,9 @@ class EquipmentsRestController extends AbstractRestfulController
 
     public function getList()
     {
-        $results = $this->getEquipmentTable()->fetchAll();
+        $cid = $this->params()->fromRoute('cid');
+        //var_dump($cid);
+        $results = $this->getEquipmentTable()->fetchAll($cid);
         $data = array();
         foreach($results as $result) {
             $data[] = $result;
@@ -27,7 +29,8 @@ class EquipmentsRestController extends AbstractRestfulController
 
     public function get($id)
     {
-        $equipment = $this->getEquipmentTable()->getEquipment($id);
+        $cid = $this->params()->fromRoute('cid');
+        $equipment = $this->getEquipmentTable()->getEquipment($id,$cid);
 
         return new JsonModel(array(
             'data' => $equipment,
@@ -36,16 +39,17 @@ class EquipmentsRestController extends AbstractRestfulController
 
     public function create($data)
     {
+        $cid = $this->params()->fromRoute('cid');
         if (empty($data['id'])) {
             $data['id'] = 0;
         }
         $form = new EquipmentForm();
-        $equipment = new Equipment();
-        $form->setInputFilter($equipment->getInputFilter());
+        $equipment = new Equipment($cid);
+        //$form->setInputFilter($equipment->getInputFilter());
         $form->setData($data);
         if ($form->isValid()) {
             $equipment->exchangeArray($form->getData());
-            $id = $this->getEquipmentTable()->saveEquipment($equipment);
+            $id = $this->getEquipmentTable()->saveEquipment($equipment,$cid);
         }
         
         return $this->get($id);
