@@ -52,23 +52,15 @@ implements InjectApplicationEventInterface
     
     public function deleteAction()
     {
-        $this->getRoomTable()->deleteRoom($id);
-        /*try
-        {
-            $id = $this->params()->fromPost('id');
-            if ( ! $id )
-                throw new \Exception('No room id.');
+            $id = $this->params()->fromRoute('room_id');
+            $room = $this->getServiceLocator()->get('room')->init($id);
             
-            $this->getServiceLocator()->get('rooms')
+            $this->getServiceLocator()->get('get_rooms')
                     ->delete($id);
-
-            return $this->myJsonModel(array('status'=>'ok'));
-        }
-        catch ( \Exception $e )
-        {
-            return $this->myJsonModel(array('status'=>'error',
-                'message' => $e->getMessage()));
-        }*/
+            
+            $view = new ViewModel(array('room'=>$room));
+            $view->setTemplate('rooms/rooms/remove_room.phtml'); // path to phtml file under view folder
+            return $view;
     }
     
     /**
@@ -128,8 +120,6 @@ implements InjectApplicationEventInterface
         }
         catch ( \Exception $e )
         {
-            // @TODO: set status to syserror so JS doesn't confuse with 
-            // validation error
             return $this->myJsonModel(array('status'=>'error',
                 'message' => $e->getMessage()));
         }

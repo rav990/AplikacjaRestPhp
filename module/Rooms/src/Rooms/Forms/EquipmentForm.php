@@ -4,21 +4,22 @@ namespace Rooms\Forms;
 use Zend\Form\Form;
 
 /**
- * Form for Room.
+ * Form for Equipment.
  */
 class EquipmentForm extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('room');
-        
+                
+        parent::__construct('equipment');
+        $this->setAttribute('method', 'post');
         $this->add(array(
             'name' => 'name',
             'type' => 'Text',
             'options' => array(
                 'label' => 'Nazwa: '
             ),
-            /* for js validations. */
+
             'attributes' => array(
                 'valid_required' => 'true',
                 'valid_minlength' => '1',
@@ -34,7 +35,7 @@ class EquipmentForm extends Form
             ),
             'attributes' => array(
                 'valid_required' => 'true',
-                'valid_minlength' => '10',
+                'valid_minlength' => '1',
                 'valid_maxlength' => '100',
             ),
         ));
@@ -57,7 +58,7 @@ class EquipmentForm extends Form
             'name' => 'damaged',
             'type' => 'Text',
             'options' => array(
-                'label' => 'CZy zniszczony: '
+                'label' => 'Czy zniszczony: '
             ),
             // for js validations
             'attributes' => array(
@@ -76,7 +77,8 @@ class EquipmentForm extends Form
             'attributes' => array(
                 'size' => '9',
                 'valid_required' => 'true',
-                'valid_regexp' => '\d{9}',
+                'valid_minlength' => '3',
+                'valid_maxlength' => '50',
             ),
         ));
         
@@ -87,9 +89,7 @@ class EquipmentForm extends Form
                 'label' => 'Data dodania: '
             ),
             'attributes' => array(
-                'size' => '9',
-                'valid_required' => 'true',
-                'valid_regexp' => '\d{9}',
+                'valid_required' => 'false',
             ),
         ));
         

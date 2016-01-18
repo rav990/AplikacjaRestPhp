@@ -11,9 +11,7 @@ return array(
         'Application',
         'Rooms',
         'RoomsRest',
-        'Admin',
-        'Album',
-        'AlbumRest'
+        'Admin'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

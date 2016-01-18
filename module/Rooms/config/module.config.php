@@ -32,10 +32,13 @@ return array(
                     )
                 ),
             ),
-            'delete_room' => array(
-                'type' => 'literal',
+            'del_room' => array(
+                'type' => 'segment',
                 'options' => array(
-                    'route' => '/delete_room',
+                    'route' => '/del_room/[:room_id]',
+                    'constraints' => array(
+                        'room_id' => '\d+',
+                    ),
                     'defaults' => array(
                         'controller' => 'Rooms\Controller\Rooms',
                         'action' => 'delete'

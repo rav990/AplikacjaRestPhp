@@ -15,7 +15,6 @@ class EquipmentsRestController extends AbstractRestfulController
     public function getList()
     {
         $cid = $this->params()->fromRoute('cid');
-        //var_dump($cid);
         $results = $this->getEquipmentTable()->fetchAll($cid);
         $data = array();
         foreach($results as $result) {
@@ -43,8 +42,9 @@ class EquipmentsRestController extends AbstractRestfulController
         if (empty($data['id'])) {
             $data['id'] = 0;
         }
+        $data['cid'] = $cid;
         $form = new EquipmentForm();
-        $equipment = new Equipment($cid);
+        $equipment = new Equipment();
         //$form->setInputFilter($equipment->getInputFilter());
         $form->setData($data);
         if ($form->isValid()) {
@@ -57,14 +57,16 @@ class EquipmentsRestController extends AbstractRestfulController
 
     public function update($id, $data)
     {
+        $cid = $this->params()->fromRoute('cid');
         $data['id'] = $id;
-        $equipment = $this->getEquipmentTable()->getEquipment($id);
+        $equipment = $this->getEquipmentTable()->getEquipment($id, $cid);
         $form  = new EquipmentForm();
-        $form->bind($equipment);
-        $form->setInputFilter($equipment->getInputFilter());
+        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
+        $form->bind($equipment);        
+        //$form->setInputFilter($equipment->getInputFilter());
         $form->setData($data);
         if ($form->isValid()) {
-            $id = $this->getEquipmentTable()->saveEquipment($form->getData());
+            $id = $this->getEquipmentTable()->saveEquipment($form->getData(),$cid);
         }
 
         return $this->get($id);
@@ -72,7 +74,8 @@ class EquipmentsRestController extends AbstractRestfulController
 
     public function delete($id)
     {
-        $this->getEquipmentTable()->deleteEquipment($id);
+        $cid = $this->params()->fromRoute('cid');
+        $this->getEquipmentTable()->deleteEquipment($id,$cid);
 
         return new JsonModel(array(
             'data' => 'deleted',

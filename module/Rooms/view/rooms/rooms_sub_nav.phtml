@@ -10,9 +10,9 @@
             array('room_id' => $room->id));
     ?>"><?php echo $this->translate("Dodaj nowy sprzęt"); ?></a>
 
-    <a href="javascript:;" class="deleteRoom" rel="<?php echo $room->id ?>">
-            <?php echo $this->translate('Usuń salę'); ?>
-        </a>
+    <a href="<?php echo $this->url('del_room',
+            array('action' => 'remove_room', 'room_id' => $room->id ));
+    ?>"><?php echo $this->translate('Usuń salę'); ?></a>
     
 <?php endif; ?>
 

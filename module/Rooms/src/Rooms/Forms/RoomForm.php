@@ -11,7 +11,7 @@ class RoomForm extends Form
     public function __construct($name = null)
     {
         parent::__construct('room');
-        
+        $this->setAttribute('method', 'post');
         $this->add(array(
             'name' => 'number',
             'type' => 'Text',

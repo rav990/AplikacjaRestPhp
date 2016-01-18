@@ -54,14 +54,14 @@ class RoomsRestController extends AbstractRestfulController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        var_dump($data['id'] );
         $room = $this->getRoomTable()->getRoom($id);
         $form  = new RoomForm();
         $form->bind($room);
-        $form->setInputFilter($room->getInputFilter());
+        //$form->setInputFilter($room->getInputFilter());
         $form->setData($data);
+        
         if ($form->isValid()) {
-            $id = $this->getRoomTable()->saveRoom($form->getData());
+            $id = $this->getRoomTable()->saveRoom($form->getData(),$data['id']);
         }
 
         return $this->get($id);

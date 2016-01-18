@@ -35,6 +35,7 @@ class EquipmentTable
     {
         $cid = (int) $cid;
         $data = array(
+            'cid' => $cid,
             'name' => $equipment->name,
             'quantity'  => $equipment->quantity,
             'destiny'  => $equipment->destiny,
@@ -42,7 +43,6 @@ class EquipmentTable
             'hire'  => $equipment->hire,
             'adddate' => $equipment->adddate,
         );
-
         $id = (int)$equipment->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
@@ -57,8 +57,8 @@ class EquipmentTable
         return $id; // Add Return
     }
 
-    public function deleteEquipment($id)
+    public function deleteEquipment($id,$cid)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        $this->tableGateway->delete(array('id' => $id,'cid'=>$cid));
     }
 }
