@@ -7,3 +7,5 @@ CREATE TABLE users (
 
 INSERT INTO users (user_name, pass_word)
     VALUES  ('user',  'e10adc3949ba59abbe56e057f20f883e');
+
+<!--pass-word 123456-->
