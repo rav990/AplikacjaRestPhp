@@ -30,7 +30,7 @@ class RoomTable
         return $row;
     }
 
-    public function saveRoom(Room $room, $id)
+    public function saveRoom(Room $room)
     {
         $data = array(
             'number' => $room->number,
@@ -39,6 +39,7 @@ class RoomTable
             'attendant'  => $room->attendant,
             'posts'  => $room->posts,
         );
+        $id = (int)$room->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
             $id = $this->tableGateway->getLastInsertValue();
