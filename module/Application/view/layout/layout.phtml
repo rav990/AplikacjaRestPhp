@@ -6,7 +6,7 @@
         <?php echo $this->headTitle($this->translate('System ewidencji wyposażenia sal')) ?>
         <?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/style.css')  ?>
         <?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/bootstrap.css')  ?>
-        <?php echo $this->headScript()->setFile($this->basePath().'/js/jquery-1.11.0.min.js','text/javascript'); ?>
+        <?php echo $this->headScript()->setFile($this->basePath().'/js/jquery-2.1.4.min.js','text/javascript'); ?>
         <?php echo $this->headScript()->setFile($this->basePath().'/js/rooms.js','text/javascript'); ?>
         <?php echo $this->headScript()->setFile($this->basePath().'/js/myValidator.js','text/javascript'); ?>
     </head>
@@ -30,17 +30,10 @@
                                 echo $this->translate("Informacje"); ?></a>-->
                     </div>
                 </nav>
-                
-                <article>
-                    <div class="fash_message">
-                        <?php echo $this->flashMessenger()->render(); ?>
-                    </div>
-                </article>
-
                 <article>
                     <div class="row" id="content_wrapper">
                         <div class="col-md-8" id="content">
-                            <div style="padding-right:20px">
+                            <div style="padding-right:20px;">
                                 <?php echo $this->content; ?>
                             </div>
                         </div>
