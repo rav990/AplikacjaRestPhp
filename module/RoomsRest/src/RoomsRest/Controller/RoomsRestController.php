@@ -56,6 +56,7 @@ class RoomsRestController extends AbstractRestfulController
         $data['id'] = $id;
         $room = $this->getRoomTable()->getRoom($id);
         $form  = new RoomForm();
+        $form->setHydrator(new \Zend\Stdlib\Hydrator\ObjectProperty());
         $form->bind($room);
         //$form->setInputFilter($room->getInputFilter());
         $form->setData($data);
